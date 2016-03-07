@@ -1,0 +1,84 @@
+html {
+    height: 100%;
+}
+body {
+    font-family: sans-serif;
+    background-color: #eee;
+    height: 100%;
+}
+article {
+    padding-top: 64px;
+    padding-bottom: 20px;
+    background-color: #fff;
+    border-width: 0 1px;
+    border-color: #ccc;
+    border-style: solid;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+.alert,
+.btn {
+    font-weight: bold;
+}
+a[target=_blank]:after {
+    content: "\e164";
+    padding-left: 0.25em;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+    font-family: 'Zou';
+    src: url('./zou-regular.woff') format('woff');
+}
+.ft-zou {
+    font-family: 'Zou';
+    letter-spacing: 0.05em;
+}
+.ft-characters > thead > tr > th {
+    white-space: nowrap;
+}
+.ft-characters > tbody > tr > td {
+    vertical-align: middle;
+}
+.ft-characters-name {
+    white-space: nowrap;
+    text-align: center;
+}
+.ft-characters-face > img {
+    margin: 1px;
+    border: 1px solid #666;
+    border-radius: 2px;
+    width: 64px;
+    height: 64px;
+}
+.ft-droppable {
+    display: inline-block;
+    border: dotted 4px #ccc;
+    border-radius: 8px;
+    padding: 0.5em;
+}
+.ft-droppable-block {
+    display: block;
+    padding: 1.5em;
+    text-align: center;
+}
+.ft-footer {
+    position: fixed;
+    bottom: 0;
+    padding: 0 20px;
+    height: 20px;
+    line-height: 20px;
+    width: 100%;
+    text-align: right;
+    font-size: 10px;
+    color: #ccc;
+    background-color: #222;
+    z-index: 10;
+}

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
+    <link rel="icon" type="image/png" href="/image/favicon.png">
+    <title>フキダシトーク</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/fukidashi.css">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand ft-zou" href="/">フキダシトーク</a>
+        <p class="navbar-text">吹き出し会話調 HTML/CSS エディター</p>
+    </div>
+</nav>
+<article class="container">
+    <!--[if IE]>
+    <div class="alert alert-danger" role="alert"><span class="ft-logo">フキダシトーク</span>で生成した HTML は IE でも動作しますが、現在ご覧になっている作成画面は IE に全く対応していません。あしからずご了承下さい。<br>
+    <a href="https://www.google.co.jp/chrome/" target="_blank">Google Chrome</a> や <a href="https://www.mozilla.jp/" target="_blank">Firefox</a> などの、より標準に準拠したブラウザの利用をご検討下さい。<br>
+    </div>
+    <![endif]-->
+    <form id="ft-form" action="." method="POST">
+    <h4 class="ft-zou">キャラクター</h4>
+    <table class="table table-hover ft-characters">
+        <thead>
+            <tr><th>名前</th><th>テーマ色</th><th>アイコン位置</th><th>表情パターン</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="ft-characters-name">
+                    たろう<br>
+                    <button type="button" class="btn btn-danger btn-xs">削除</button>
+                </td>
+                <td>
+                    <select class="form-control" name="color">
+                        <option value="white">白</option>
+                        <option value="red">赤</option>
+                        <option value="orange">オレンジ</option>
+                        <option value="yellow">黄色</option>
+                        <option value="green">緑</option>
+                        <option value="cyan">水色</option>
+                        <option value="blue">青</option>
+                        <option value="purple">紫</option>
+                        <option value="grey">グレー</option>
+                        <option value="black">黒</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control" name="icon-position">
+                        <option value="left">左</option>
+                        <option value="right">右</option>
+                    </select>
+                </td>
+                <td class="ft-characters-face">
+                    <img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png">
+                </td>
+                <td><span class="ft-droppable">画像をドロップして表情を追加</span></td>
+            </tr>
+            <tr>
+                <td class="ft-characters-name">
+                    じろう・さぶろう<br>
+                    <button type="button" class="btn btn-danger btn-xs">削除</button>
+                </td>
+                <td>
+                    <select class="form-control" name="color">
+                        <option value="white">白</option>
+                        <option value="red">赤</option>
+                        <option value="orange">オレンジ</option>
+                        <option value="yellow">黄色</option>
+                        <option value="green">緑</option>
+                        <option value="blue">青</option>
+                        <option value="purple">紫</option>
+                        <option value="grey">グレー</option>
+                        <option value="black">黒</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control" name="icon-position">
+                        <option value="left">左</option>
+                        <option value="right">右</option>
+                    </select>
+                </td>
+                <td class="ft-characters-face">
+                    <img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png"><img src="http://dummyimage.com/64x64.png">
+                </td>
+                <td><span class="ft-droppable">画像をドロップして表情を追加</span></td>
+            </tr>
+            <tr><td colspan="5"><span class="ft-droppable ft-droppable-block">画像をドロップしてキャラクターを追加</span></td></tr>
+        </tbody>
+    </table>
+    <h4 class="ft-zou">デザイン</h4>
+    <div class="ft-zou">アイコン</div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="icon-size" value="l" autocomplete="off" checked>大
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="icon-size" value="m" autocomplete="off">中
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="icon-size" value="s" autocomplete="off">小
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="icon-size" value="xs" autocomplete="off">極小
+        </label>
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="icon-shape" value="rounded-square" autocomplete="off" checked>角丸
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="icon-shape" value="square" autocomplete="off">四角
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="icon-shape" value="circle" autocomplete="off">丸
+        </label>
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="icon-border" value="thin" autocomplete="off" checked>細枠
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="icon-border" value="thick" autocomplete="off">太枠
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="icon-border" value="double" autocomplete="off">二重枠
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="icon-border" value="none" autocomplete="off">枠なし
+        </label>
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="icon-shadow" value="show" autocomplete="off" checked>影あり
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="icon-shadow" value="none" autocomplete="off">影なし
+        </label>
+    </div>
+    <div class="ft-zou">フキダシ</div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="baloon-shape" value="rounded-square" autocomplete="off" checked>角丸
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="baloon-shape" value="square" autocomplete="off">四角
+        </label>
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="baloon-border" value="thin" autocomplete="off" checked>細枠
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="baloon-border" value="thick" autocomplete="off">太枠
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="baloon-border" value="none" autocomplete="off">枠なし
+        </label>
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="baloon-shadow" value="show" autocomplete="off" checked>影あり
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="baloon-shadow" value="none" autocomplete="off">影なし
+        </label>
+    </div>
+    <div class="ft-zou">ヨコハバ</div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="talk-width" value="full" autocomplete="off" checked>幅100%
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="talk-width" value="240" autocomplete="off">幅240
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="talk-width" value="320" autocomplete="off">幅320
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="talk-width" value="480" autocomplete="off">幅480
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="talk-width" value="600" autocomplete="off">幅600
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="talk-width" value="800" autocomplete="off">幅800
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="talk-width" value="960" autocomplete="off">幅960
+        </label>
+    </div>
+
+    <h4 class="ft-zou">トーク</h4>
+    <div id="ft-talk" class="">
+        <ul>
+            <li class="ft-talk ft-icon-left ft-color-white">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいや
+                </div>
+            </li>
+            <li class="ft-talk ft-icon-right ft-color-red">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいやあいやいや
+                </div>
+            </li>
+            <li class="ft-talk ft-icon-left ft-color-orange">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいや
+                </div>
+            </li>
+            <li class="ft-talk ft-icon-left ft-color-yellow">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいや
+                </div>
+            </li>
+            <li class="ft-talk ft-icon-left ft-color-green">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいや
+                </div>
+            </li>
+            <li class="ft-talk ft-icon-left ft-color-cyan">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいや
+                </div>
+            </li>
+            <li class="ft-talk ft-icon-left ft-color-blue">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいや
+                </div>
+            </li>
+            <li class="ft-talk ft-icon-left ft-color-purple">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいや
+                </div>
+            </li>
+            <li class="ft-talk ft-icon-left ft-color-grey">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいや
+                </div>
+            </li>
+            <li class="ft-talk ft-icon-left ft-color-black">
+                <div class="ft-icon">
+                    <img src="http://dummyimage.com/256x256.png">
+                </div>
+                <div class="ft-baloon">
+                    あいやいや
+                </div>
+            </li>
+        </ul>
+    </div>
+    </form>
+</article>
+<footer class="ft-footer">
+    Produced by <a href="https://twitter.com/otchy" target="_blank">@otchy</a> from <a href="http://www.otchy.net" target="_blank">OTCHY.NET</a>
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>
