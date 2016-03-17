@@ -26,55 +26,75 @@
 #ft-talk.ft-talk-width-960 {
     width: 960px;
 }
-#ft-talk.ft-icon-size-l .ft-icon img {
+#ft-talk .ft-icon {
+    display: inline-block;
+    background-position: center;
+}
+#ft-talk.ft-icon-size-l .ft-icon {
     width: 128px;
     height: 128px;
+    background-size: 128px;
 }
-#ft-talk.ft-icon-size-m .ft-icon img {
+#ft-talk.ft-icon-size-m .ft-icon {
     width: 96px;
     height: 96px;
+    background-size: 96px;
 }
-#ft-talk.ft-icon-size-s .ft-icon img {
+#ft-talk.ft-icon-size-s .ft-icon {
     width: 64px;
     height: 64px;
+    background-size: 64px;
 }
-#ft-talk.ft-icon-size-xs .ft-icon img {
+#ft-talk.ft-icon-size-xs .ft-icon {
     width: 32px;
     height: 32px;
+    background-size: 32px;
 }
-#ft-talk.ft-icon-shape-rounded-square .ft-icon img {
+#ft-talk.ft-icon-shape-rounded-square .ft-icon {
     border-radius: 10%;
 }
-#ft-talk.ft-icon-shape-square .ft-icon img {
+#ft-talk.ft-icon-shape-square .ft-icon {
     border-radius: 0;
 }
-#ft-talk.ft-icon-shape-circle .ft-icon img {
+#ft-talk.ft-icon-shape-circle .ft-icon {
     border-radius: 50%;
 }
-#ft-talk.ft-icon-border-thin .ft-icon img {
+#ft-talk.ft-icon-border-thin .ft-icon {
     border-style: solid;
     border-width: 1px;
 }
-#ft-talk.ft-icon-border-thick .ft-icon img {
+#ft-talk.ft-icon-border-thick .ft-icon {
     border-style: solid;
     border-width: 4px;
 }
-#ft-talk.ft-icon-border-double .ft-icon img {
+#ft-talk.ft-icon-border-double .ft-icon {
     border-style: double;
     border-width: 4px;
 }
-#ft-talk.ft-icon-border-none .ft-icon img {
+#ft-talk.ft-icon-border-none .ft-icon {
     border-style: none;
     border-width: 0;
 }
-#ft-talk.ft-icon-shadow-show .ft-icon img {
+#ft-talk.ft-icon-shadow-show .ft-icon {
     box-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
-#ft-talk.ft-icon-shadow-none .ft-icon img {
+#ft-talk.ft-icon-shadow-none .ft-icon {
     box-shadow: none;
 }
-#ft-talk .ft-baloon {
+#ft-talk .ft-talk {
+    clear: both;
+    margin-bottom: 10px;
+}
+#ft-talk .ft-talk:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#ft-talk .ft-talk .ft-baloon {
+    position: relative;
     padding: 1em;
+    line-height: 1.2em;
+    text-align: left;
 }
 #ft-talk.ft-baloon-shape-rounded-square .ft-baloon {
     border-radius: 8px;
@@ -100,30 +120,18 @@
 #ft-talk.ft-baloon-shadow-none .ft-baloon {
     box-shadow: none;
 }
-#ft-talk .ft-talk {
-    clear: both;
-    margin-bottom: 10px;
-}
-#ft-talk .ft-talk:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-#ft-talk .ft-talk .ft-baloon {
-    position: relative;
-}
-#ft-talk .ft-talk.ft-icon-left .ft-baloon {
+#ft-talk .ft-talk.ft-icon-pos-left .ft-baloon {
     margin-left: 10px;
 }
-#ft-talk .ft-talk.ft-icon-right .ft-baloon {
+#ft-talk .ft-talk.ft-icon-pos-right .ft-baloon {
     margin-right: 10px;
 }
-#ft-talk .ft-talk.ft-icon-left .ft-icon,
-#ft-talk .ft-talk.ft-icon-left .ft-baloon {
+#ft-talk .ft-talk.ft-icon-pos-left .ft-icon,
+#ft-talk .ft-talk.ft-icon-pos-left .ft-baloon {
     float: left;
 }
-#ft-talk .ft-talk.ft-icon-right .ft-icon,
-#ft-talk .ft-talk.ft-icon-right .ft-baloon {
+#ft-talk .ft-talk.ft-icon-pos-right .ft-icon,
+#ft-talk .ft-talk.ft-icon-pos-right .ft-baloon {
     float: right;
 }
 #ft-talk.ft-icon-size-l .ft-talk .ft-baloon {
@@ -149,110 +157,100 @@
     border-color: inherit;
     background-color: inherit;
 }
-#ft-talk .ft-talk.ft-icon-left .ft-baloon:after {
+#ft-talk .ft-talk.ft-icon-pos-left .ft-baloon:after {
     left: 0;
 }
-#ft-talk .ft-talk.ft-icon-right .ft-baloon:after {
+#ft-talk .ft-talk.ft-icon-pos-right .ft-baloon:after {
     right: 0;
 }
-#ft-talk.ft-baloon-border-thin .ft-talk.ft-icon-left .ft-baloon:after {
+#ft-talk.ft-baloon-border-thin .ft-talk.ft-icon-pos-left .ft-baloon:after {
     border-width: 0 0 1px 1px;
     transform: translateX(-6px) rotate(45deg);
 }
-#ft-talk.ft-baloon-border-thick .ft-talk.ft-icon-left .ft-baloon:after {
+#ft-talk.ft-baloon-border-thick .ft-talk.ft-icon-pos-left .ft-baloon:after {
     border-width: 0 0 4px 4px;
     transform: translateX(-8px) rotate(45deg);
 }
-#ft-talk.ft-baloon-border-none.ft-baloon-shadow-show .ft-talk.ft-icon-left .ft-baloon:after {
+#ft-talk.ft-baloon-border-none.ft-baloon-shadow-show .ft-talk.ft-icon-pos-left .ft-baloon:after {
     border: none;
     box-shadow: -2px 2px 2px rgba(0,0,0,0.2);
     transform: translateX(-4px) rotate(45deg);
 }
-#ft-talk.ft-baloon-border-none.ft-baloon-shadow-none .ft-talk.ft-icon-left .ft-baloon:after {
+#ft-talk.ft-baloon-border-none.ft-baloon-shadow-none .ft-talk.ft-icon-pos-left .ft-baloon:after {
     display: none;
 }
-#ft-talk.ft-baloon-border-thin .ft-talk.ft-icon-right .ft-baloon:after {
+#ft-talk.ft-baloon-border-thin .ft-talk.ft-icon-pos-right .ft-baloon:after {
     border-width: 1px 1px 0 0;
     transform: translateX(6px) rotate(45deg);
 }
-#ft-talk.ft-baloon-border-thick .ft-talk.ft-icon-right .ft-baloon:after {
+#ft-talk.ft-baloon-border-thick .ft-talk.ft-icon-pos-right .ft-baloon:after {
     border-width: 4px 4px 0 0;
     transform: translateX(8px) rotate(45deg);
 }
-#ft-talk.ft-baloon-border-none.ft-baloon-shadow-show .ft-talk.ft-icon-right .ft-baloon:after {
+#ft-talk.ft-baloon-border-none.ft-baloon-shadow-show .ft-talk.ft-icon-pos-right .ft-baloon:after {
     border: none;
     box-shadow: 2px -2px 2px rgba(0,0,0,0.2);
     transform: translateX(4px) rotate(45deg);
 }
-#ft-talk.ft-baloon-border-none.ft-baloon-shadow-none .ft-talk.ft-icon-right .ft-baloon:after {
+#ft-talk.ft-baloon-border-none.ft-baloon-shadow-none .ft-talk.ft-icon-pos-right .ft-baloon:after {
     display: none;
 }
-#ft-talk .ft-talk.ft-color-white .ft-icon img,
-#ft-talk .ft-talk.ft-color-white .ft-baloon {
+#ft-talk .ft-talk.ft-baloon-color-white > * {
     color: #333;
     border-color: #333;
     background-color: #fff;
 }
-.form-control[data-color=red],
-#ft-talk .ft-talk.ft-color-red .ft-icon img,
-#ft-talk .ft-talk.ft-color-red .ft-baloon {
-    color: #300;
+#ft-talk .ft-talk.ft-baloon-color-red > * {
+    color: #600;
     border-color: #900;
     background-color: #fee;
 }
-.form-control[data-color=orange],
-#ft-talk .ft-talk.ft-color-orange .ft-icon img,
-#ft-talk .ft-talk.ft-color-orange .ft-baloon {
+#ft-talk .ft-talk.ft-baloon-color-orange > * {
     color: #630;
     border-color: #c60;
     background-color: #fec;
 }
-.form-control[data-color=yellow],
-#ft-talk .ft-talk.ft-color-yellow .ft-icon img,
-#ft-talk .ft-talk.ft-color-yellow .ft-baloon {
+#ft-talk .ft-talk.ft-baloon-color-yellow > * {
     color: #330;
     border-color: #660;
     background-color: #ffe;
 }
-.form-control[data-color=green],
-#ft-talk .ft-talk.ft-color-green .ft-icon img,
-#ft-talk .ft-talk.ft-color-green .ft-baloon {
+#ft-talk .ft-talk.ft-baloon-color-green > * {
     color: #030;
     border-color: #060;
     background-color: #efe;
 }
-.form-control[data-color=cyan],
-#ft-talk .ft-talk.ft-color-cyan .ft-icon img,
-#ft-talk .ft-talk.ft-color-cyan .ft-baloon {
+#ft-talk .ft-talk.ft-baloon-color-cyan > * {
     color: #336;
     border-color: #339;
     background-color: #eff;
 }
-.form-control[data-color=blue],
-#ft-talk .ft-talk.ft-color-blue .ft-icon img,
-#ft-talk .ft-talk.ft-color-blue .ft-baloon {
+#ft-talk .ft-talk.ft-baloon-color-blue > * {
     color: #003;
     border-color: #006;
     background-color: #eef;
 }
-.form-control[data-color=purple],
-#ft-talk .ft-talk.ft-color-purple .ft-icon img,
-#ft-talk .ft-talk.ft-color-purple .ft-baloon {
+#ft-talk .ft-talk.ft-baloon-color-purple > * {
     color: #303;
     border-color: #606;
     background-color: #fef;
 }
-.form-control[data-color=grey],
-#ft-talk .ft-talk.ft-color-grey .ft-icon img,
-#ft-talk .ft-talk.ft-color-grey .ft-baloon {
+#ft-talk .ft-talk.ft-baloon-color-grey > * {
     color: #000;
-    border-color: #333;
+    border-color: #666;
     background-color: #ccc;
 }
-.form-control[data-color=black],
-#ft-talk .ft-talk.ft-color-black .ft-icon img,
-#ft-talk .ft-talk.ft-color-black .ft-baloon {
+#ft-talk .ft-talk.ft-baloon-color-black > * {
     color: #eee;
-    border-color: #999;
+    border-color: #fff;
     background-color: #333;
+}
+#ft-talk .ft-note {
+    font-size: 50%;
+    color: #999;
+    text-align: right;
+}
+#ft-talk .ft-note a {
+    text-decoration: none;
+    color: #009;
 }

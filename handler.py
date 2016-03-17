@@ -5,7 +5,9 @@ import jinja2
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
-    autoescape=True
+    autoescape=True,
+    variable_start_string='[[',
+    variable_end_string=']]'
 )
 
 class BaseHandler(webapp2.RequestHandler):
@@ -15,4 +17,8 @@ class BaseHandler(webapp2.RequestHandler):
 
 class IndexHandler(BaseHandler):
     def get(self):
-        self.render("index.html")
+        if self.request.get('cdn'):
+            cdn = self.request.get('cdn') in ['True', 'true', '1']
+        else:
+            cdn = True
+        self.render("index.html", {'cdn': cdn})

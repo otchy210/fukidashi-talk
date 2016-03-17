@@ -6,7 +6,7 @@ body {
     background-color: #eee;
     height: 100%;
 }
-article {
+main {
     padding-top: 64px;
     padding-bottom: 20px;
     background-color: #fff;
@@ -19,6 +19,12 @@ article {
 .alert,
 .btn {
     font-weight: bold;
+}
+.navbar-default .navbar-brand {
+    color: #0c7cd5;
+}
+.btn-group {
+    margin-bottom: 5px;
 }
 a[target=_blank]:after {
     content: "\e164";
@@ -33,9 +39,25 @@ a[target=_blank]:after {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 636px;
+    }
+}
 @font-face {
     font-family: 'Zou';
-    src: url('./zou-regular.woff') format('woff');
+    src: url('../fonts/zou-regular.woff') format('woff');
+}
+#ft-alert {
+    position: fixed;
+    width: 40%;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    z-index: 2000;
+}
+#ft-alert .alert {
+    margin-bottom: 10px;
 }
 .ft-zou {
     font-family: 'Zou';
@@ -44,25 +66,42 @@ a[target=_blank]:after {
 .ft-characters > thead > tr > th {
     white-space: nowrap;
 }
+.ft-characters > thead .ft-icon-pattern {
+    width: 99%;
+}
+.ft-characters > thead .ft-add-icon {
+    min-width: 120px;
+}
 .ft-characters > tbody > tr > td {
     vertical-align: middle;
 }
 .ft-characters-name {
-    white-space: nowrap;
-    text-align: center;
+    position: relative;
 }
-.ft-characters-face > img {
+.ft-characters-name > input {
+    width: 100px;
+}
+.ft-characters-icon > span {
+    display: inline-block;
     margin: 1px;
-    border: 1px solid #666;
+    border: 1px solid #ddd;
     border-radius: 2px;
     width: 64px;
     height: 64px;
+    background-size: 64px;
+}
+.ft-loading-image {
+    position: fixed;
+    left: -100000px;
 }
 .ft-droppable {
     display: inline-block;
     border: dotted 4px #ccc;
     border-radius: 8px;
     padding: 0.5em;
+}
+.ft-droppable.ft-dragging {
+    background-color: #eff;
 }
 .ft-droppable-block {
     display: block;
@@ -81,4 +120,191 @@ a[target=_blank]:after {
     color: #ccc;
     background-color: #222;
     z-index: 10;
+}
+#ft-add-baloon {
+    margin-bottom: 10px;
+}
+#ft-add-baloon a {
+    cursor: pointer;
+}
+#ft-talk .ft-talk {
+    position: relative;
+}
+#ft-talk .ft-talk .ft-icon {
+    position: relative;
+}
+#ft-talk .ft-talk .ft-icon .ft-icon-prev,
+#ft-talk .ft-talk .ft-icon .ft-icon-next {
+    display: inline-block;
+    position: absolute;
+    padding-top: 50%;
+    width: 50%;
+    height: 100%;
+    line-height: 0;
+    font-family: 'Glyphicons Halflings';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #333;
+    text-shadow: 1px 0 0 #fff, 1px 1px 0 #fff, 0 1px 0 #fff, -1px 1px 0 #fff, -1px 0 0 #fff, -1px -1px 0 #fff, 0 -1px 0 #fff, 1px -1px 0 #fff;
+    opacity: 0;
+    cursor: pointer;
+}
+#ft-talk .ft-talk .ft-icon .ft-icon-prev:hover,
+#ft-talk .ft-talk .ft-icon .ft-icon-next:hover {
+    opacity: 1;
+    transition: all 0.4s;
+}
+#ft-talk .ft-talk .ft-icon .ft-icon-prev {
+    content: "\e251";
+    left: 0;
+    text-align: left;
+}
+#ft-talk .ft-talk .ft-icon .ft-icon-prev:before {
+    content: "\e251";
+}
+#ft-talk .ft-talk .ft-icon .ft-icon-next {
+    right: 0;
+    text-align: right;
+}
+#ft-talk .ft-talk .ft-icon .ft-icon-next:before {
+    content: "\e250";
+}
+#ft-talk.ft-icon-size-l .ft-talk .ft-icon {
+    font-size: 32px
+}
+#ft-talk.ft-icon-size-m .ft-talk .ft-icon {
+    font-size: 24px
+}
+#ft-talk.ft-icon-size-s .ft-talk .ft-icon {
+    font-size: 16px
+}
+#ft-talk.ft-icon-size-xs .ft-talk .ft-icon {
+    font-size: 8px
+}
+#ft-talk .ft-talk .ft-baloon textarea {
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    box-shadow: none;
+    resize: none;
+    line-height: 1.2em;
+    min-height: 1.2em;
+    outline-style: none;
+}
+#ft-talk .ft-talk #ft-baloon-menu {
+    position: absolute;
+    min-width: 420px;
+    top: -50px;
+    background-color: transparent;
+}
+#ft-baloon-menu .ft-close {
+    position: absolute;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    right: -4px;
+    top: -12px;
+    line-height: 20px;
+    border-radius: 50%;
+    border: solid 2px #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    text-align: center;
+    background-color: #a33;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 5;
+}
+#ft-baloon-menu #ft-baloon-menu-inner {
+    display: inline-block;
+    padding: 10px;
+    border: solid 1px #999;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+#ft-baloon-menu .btn-group {
+    margin-bottom: 0;
+}
+#ft-baloon-menu .btn-sm {
+    padding: 5px 10px;
+    color: #444;
+}
+#ft-baloon-menu .ft-btn-white {
+    background-color: #fff;
+}
+#ft-baloon-menu .ft-btn-white.active {
+    background-color: #eee;
+}
+#ft-baloon-menu .ft-btn-red {
+    background-color: #f66;
+}
+#ft-baloon-menu .ft-btn-red.active {
+    background-color: #e55;
+}
+#ft-baloon-menu .ft-btn-orange {
+    background-color: #f96;
+}
+#ft-baloon-menu .ft-btn-orange.active {
+    background-color: #e85;
+}
+#ft-baloon-menu .ft-btn-yellow {
+    background-color: #ff6;
+}
+#ft-baloon-menu .ft-btn-yellow.active {
+    background-color: #ee5;
+}
+#ft-baloon-menu .ft-btn-green {
+    background-color: #6f6;
+}
+#ft-baloon-menu .ft-btn-green.active {
+    background-color: #5e5;
+}
+#ft-baloon-menu .ft-btn-cyan {
+    background-color: #6ff;
+}
+#ft-baloon-menu .ft-btn-cyan.active {
+    background-color: #5ee;
+}
+#ft-baloon-menu .ft-btn-blue {
+    background-color: #66f;
+}
+#ft-baloon-menu .ft-btn-blue.active {
+    background-color: #55e;
+}
+#ft-baloon-menu .ft-btn-purple {
+    background-color: #f6f;
+}
+#ft-baloon-menu .ft-btn-purple.active {
+    background-color: #e5e;
+}
+#ft-baloon-menu .ft-btn-grey {
+    background-color: #ccc;
+}
+#ft-baloon-menu .ft-btn-grey.active {
+    background-color: #aaa;
+}
+#ft-baloon-menu .ft-btn-black {
+    color: #fff;
+    background-color: #666;
+}
+#ft-baloon-menu .ft-btn-black.active {
+    background-color: #333;
+}
+#ft-export-wrapper {
+    padding: 20px 50px;
+}
+#ft-export-modal .modal-body {
+    position: relative;
+}
+#ft-export-modal #ft-copy {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+#ft-export-modal pre {
+    max-height: 250px;
+    overflow-wrap: normal;
 }
