@@ -11,12 +11,46 @@ var load = function(key, defaultValue) {
     }
     return JSON.parse(value);
 };
+var remove = function(key) {
+    localStorage.removeItem(key);
+};
+var addAlert = function(type, text) {
+    var html = templates.alert({
+        type: type, text: text
+    });
+    $alert.append(html);
+};
 var isAcceptableType = function(type) {
     switch(type) {
         case 'image/png':
         case 'image/jpeg':
         case 'image/gif':
             return true;
+    }
+    return false;
+};
+var hash = function(str) {
+    var hash = 0;
+    if (str.length === 0) return '00000000';
+    for (var i = 0; i < str.length; i++) {
+        var chr   = str.charCodeAt(i);
+        hash  = ((hash << 5) - hash) + chr;
+        hash |= 0;
+    }
+    return ('0000000' + hash.toString(16)).slice(-8);
+};
+var generateUid = function() {
+    var ts = (new Date()).getTime();
+    var r = Math.pow(2, 64) * Math.random();
+    var uid = hash(ts.toString());
+    uid += hash(r.toString(16));
+    return uid;
+};
+var arrayRemove = function(array, item) {
+    var index = array.indexOf(item);
+    if (index >= 0) {
+        array.splice(index, 1);
+        return true;
     }
     return false;
 }
@@ -37,15 +71,8 @@ var nullImageData = ctx.createImageData(256, 256);
 var templates = {
     alert: Handlebars.compile($('#alert-template').html()),
     character: Handlebars.compile($('#character-template').html()),
+    icon: Handlebars.compile($('#icon-template').html()),
     baloon: Handlebars.compile($('#baloon-template').html())
-};
-
-// alerts
-var addAlert = function(type, text) {
-    var html = templates.alert({
-        type: type, text: text
-    });
-    $alert.append(html);
 };
 
 // global config
@@ -81,13 +108,12 @@ var loadGlobalSettings = function() {
         var value = pair[1];
         $form.find('input[name=' + name + '][value=' + value + ']').trigger('click');
     });
-}
+};
 loadGlobalSettings();
 $form.on('change', 'input', applyStyle);
 applyStyle();
 
 // add character
-var characterCounter = 0;
 var $characters = $('#ft-characters');
 var addCharacter = function(file) {
     var message = file.name + " のキャラクター名を指定して下さい。";
@@ -95,15 +121,9 @@ var addCharacter = function(file) {
     do {
         name = prompt(message, file.name);
     } while (!name);
-    var html = templates.character({name: name});
-    $characters.append(html);
-    var $tr = $characters.find('tr:last-child');
-    characterCounter++;
-    var characterId = 'ft-character-' + characterCounter;
-    $tr.attr('id', characterId);
+    var $tr = addCharacter_(name);
     addIcon($tr, file);
 };
-var iconCounter = 0;
 var addIcon = function($tr, file) {
     var fileReader = new FileReader();
     $(fileReader).on('load', function(e) {
@@ -128,24 +148,106 @@ var addIcon = function($tr, file) {
             }
             ctx.putImageData(nullImageData, 0, 0);
             ctx.drawImage($img.get(0), 0, 0, w, h, target.x, target.y, target.w, target.h);
-            // $img.attr('src', canvas.toDataURL());
             $img.remove();
-            iconCounter++;
-            var iconClass = 'ft-icon-' + iconCounter;
-            var styleId = 'ft-icon-' + iconCounter + '-style';
-            var $style = $('<style>')
-                .attr('id', styleId)
-                .html('.' + iconClass + '{background-image:url(' + canvas.toDataURL() + ')}')
-            $body.append($style);
-            var $span = $('<span>').addClass(iconClass).data('characterId', $tr.attr('id'));
-            $tr.find('.ft-characters-icon')
-                .append($span);
+            var imageData = canvas.toDataURL();
+            addIcon_($tr, imageData);
         });
         $body.append($img);
         $img.attr('src', e.target.result);
     });
     fileReader.readAsDataURL(file);
 };
+var characterCounter = 0;
+var addCharacter_ = function(name, uid) {
+    characterCounter++;
+    var characterId = 'ft-character-' + characterCounter;
+    if (!uid) {
+        uid = generateUid();
+    }
+    var html = templates.character({name: name, id: characterId, uid: uid});
+    $characters.append(html);
+    if (!arguments[1]) {
+        save(uid, {name:name});
+        var characters = load('characters', []);
+        characters.push(uid);
+        save('characters', characters);
+    }
+    return $characters.find('tr:last-child');
+};
+var iconCounter = 0;
+var addIcon_ = function($tr, imageData, uid) {
+    iconCounter++;
+    var iconClass = 'ft-icon-' + iconCounter;
+    var styleId = 'ft-icon-' + iconCounter + '-style';
+    if (!uid) {
+        uid = generateUid();
+    }
+    var $style = $('<style>')
+        .attr('id', styleId)
+        .html('.' + iconClass + '{background-image:url(' + imageData + ')}')
+    $body.append($style);
+    var html = templates.icon({'class': iconClass, characterId: $tr.attr('id'), uid: uid});
+    $tr.find('.ft-characters-icon').append(html);
+    if (!arguments[2]) {
+        save(uid, imageData);
+        var iconsKey = $tr.data('uid') + '-icons';
+        var icons = load(iconsKey, []);
+        icons.push(uid);
+        save(iconsKey, icons);
+    }
+};
+var deleteIcon_ = function($span, $icons, iconClass) {
+    var iconUid = $span.data('uid');
+    var characterUid = $span.closest('tr').data('uid');
+    var $style = $('#' + iconClass);
+    $style.remove();
+    $span.remove();
+    $icons.each(function() {
+        $(this).closest('li').remove();
+    });
+    var iconsKey = characterUid + '-icons';
+    var icons = load(iconsKey, []);
+    if (arrayRemove(icons, iconUid)) {
+        save(iconsKey, icons);
+    }
+    remove(iconUid);
+};
+var deleteCharacter_ = function($tr) {
+    var uid = $tr.data('uid');
+    var $icons = $tr.find('.ft-characters-icon > span');
+    var classes = [];
+    $icons.each(function() {
+        classes.push($(this).attr('class'));
+    });
+    var selector = '.' + classes.join(', .');
+    $talk.find(selector).each(function() {
+        $(this).closest('li').remove();
+    });
+    $tr.remove();
+    var iconsKey = uid + '-icons';
+    load(iconsKey, []).forEach(function(iconUid) {
+        remove(iconUid);
+    });
+    remove(iconsKey);
+    remove(uid);
+    var characters = load('characters', []);
+    if (arrayRemove(characters, uid)) {
+        save('characters', characters);
+    }
+}
+var loadCharacters = function() {
+    var characters = load('characters', []);
+    characters.forEach(function(uid){
+        var character = load(uid, {});
+        var $tr = addCharacter_(character.name, uid);
+        var icons = load(uid + '-icons', []);
+        icons.forEach(function(uid) {
+            var imageData = load(uid, '');
+            addIcon_($tr, imageData, uid);
+        });
+    });
+};
+loadCharacters();
 var stopEvent = function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -185,6 +287,40 @@ $characters
     var $tr = $(this).closest('tr');
     onDrop(e, function(file) {
         addIcon($tr, file);
+    });
+}).on('change', 'input[name=name]', function() {
+    var $input = $(this);
+    var $tr = $input.closest('tr');
+    var uid = $tr.data('uid');
+    var data = load(uid, {});
+    data.name = $input.val();
+    save(uid, data);
+}).on('click', '.ft-delete-icon', function() {
+    var $span = $(this).parent();
+    var $tr = $span.closest('tr');
+    var $characterIcons = $tr.find('.ft-characters-icon > span');
+    if ($characterIcons.length <= 1) {
+        addAlert('warning', '全てのアイコンを削除する事は出来ません。');
+        return;
+    }
+    var iconClass = $span.attr('class');
+    var $icons = $talk.find('.' + iconClass);
+    if ($icons.length > 0) {
+        bootbox.confirm('アイコンを使用している吹き出しも同時に削除されます。よろしいですか？', function(result) {
+            if (result) {
+                deleteIcon_($span, $icons, iconClass);
+            }
+        });
+    } else {
+        deleteIcon_($span, $icons, iconClass);
+    }
+}).on('click', '.ft-delete-character', function() {
+    var self = this;
+    bootbox.confirm('全てのアイコン画像、アイコンを使用している吹き出しも同時に削除されます。よろしいですか？', function(result) {
+        if (result) {
+            var $tr = $(self).closest('tr');
+            deleteCharacter_($tr);
+        }
     });
 });
 
@@ -260,10 +396,10 @@ $talkUl.on('click', 'li', function(e) {
         }
         newClasses.push(classes[i]);
     }
-    var iconSpan = $characters.find('.' + iconClass);
-    var characterId = iconSpan.data('characterId');
+    var $iconSpan = $characters.find('.' + iconClass);
+    var characterId = $iconSpan.data('character-id');
     var $characterTr = $('#' + characterId);
-    var $icons = $characterTr.find('.ft-characters-icon span');
+    var $icons = $characterTr.find('.ft-characters-icon > span');
     var $currentIcon = $characterTr.find('.' + iconClass);
     var nextIndex = ($currentIcon.index() + ($target.hasClass('ft-icon-next') ? 1 : -1)) % $icons.size();
     var newClass = $($icons.get(nextIndex)).attr('class');
@@ -331,4 +467,14 @@ $exportModal.on('show.bs.modal', function () {
     } catch (e) {
         addAlert('warning', 'コピー失敗');
     }
+});
+// initialize
+$('#ft-initialize').on('click', function() {
+    bootbox.confirm('全てのデータを削除し再読込を行います。よろしいですか？', function(result) {
+        if (!result) {
+            return;
+        }
+        localStorage.clear();
+        location.href = '/';
+    });
 });

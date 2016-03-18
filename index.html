@@ -20,8 +20,14 @@
 <div id="ft-alert"></div>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand ft-zou" href="/">フキダシトーク</a>
-        <p class="navbar-text">吹き出し会話調 HTML/CSS ジェネレータ</p>
+        <div class="navbar-header">
+            <a class="navbar-brand ft-zou" href="/">フキダシトーク</a>
+            <p class="navbar-text">吹き出し会話調 HTML/CSS ジェネレータ</p>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a id="ft-initialize">データ初期化</a></li>
+            <li><a href="#">ヘルプ</a></li>
+        </ul>
     </div>
 </nav>
 <main class="container">
@@ -34,7 +40,7 @@
     <h4 class="ft-zou">キャラクター</h4>
     <table class="table table-hover ft-characters">
         <thead>
-            <tr><th>名前</th><th class="ft-icon-pattern">表情パターン</th><th class="ft-add-icon">表情追加</th></tr>
+            <tr><th>名前</th><th class="ft-icon-pattern">アイコンパターン</th><th class="ft-add-icon">アイコン追加</th><th></th></tr>
         </thead>
         <tbody id="ft-characters"></tbody>
         <tfoot>
@@ -115,11 +121,12 @@
     </form>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5480472378575624" data-ad-slot="9666287925" data-ad-format="auto"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
     <h4 class="ft-zou">ライセンス</h4>
     <p>
         <span class="ft-zou">フキダシトーク</span>のアプリケーション自体は <a href="https://ja.wikipedia.org/wiki/MIT_License" target="_blank">MIT ライセンス</a>で <a href="https://github.com/otchy210/fukidashi-talk" target="_blank">github</a> 上に公開しています。<br>
-        出力された HTML および CSS についてはその著作権を主張しません。自由に改変、再配布等を行っていただいて問題ありません。HTML の最後にこのサイトへのリンクがありますが、それを削除するのも自由です。ただ、このサイトを気に入って、他の方にも紹介したいと思っていただけるのであれば、そのままにしていただけると幸いです。
+        出力された HTML および CSS についてはその著作権を主張しません。自由に改変、再配布等を行っていただいて問題ありません。HTML の最後にこのサイトへのリンクがありますが、それを削除するのも自由です。ただ、このサイトを気に入ってもらえたら、そのままにしていただけると幸いです。
     </p>
 
     <h4 class="ft-zou">スペシャルサンクス</h4>
@@ -127,13 +134,14 @@
         <li>サーバ提供：<a href="https://cloud.google.com/appengine/" target="_blank">Google App Engine</a></li>
         <li>Python ウェブフレームワーク：<a href="https://webapp-improved.appspot.com/" target="_blank">Webapp2</a></li>
         <li>Python テンプレートエンジン：<a href="http://jinja.pocoo.org/docs/dev/" target="_blank">Jinja2</a></li>
-        <li>画像 CDN：<a href="http://cloudinary.com/" target="_blank">Cloudinary</a></li>
         <li>JS ライブラリ：<a href="https://jquery.com/" target="_blank">jQuery</a></li>
+        <li>JS テンプレートエンジン：<a href="http://handlebarsjs.com/" target="_blank">Handlebars</a></li>
         <li>テキストエリア自動拡張：<a href="http://www.jacklmoore.com/autosize/" target="_blank">Autosize</a></li>
         <li>CSS フレームワーク：<a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></li>
         <li>Bootstrap テーマ：<a href="https://bootswatch.com/" target="_blank">Bootswatch</a></li>
-        <li>JS テンプレートエンジン：<a href="http://handlebarsjs.com/" target="_blank">Handlebars</a></li>
+        <li>Bootstrap 用ダイアログボックス：<a href="http://bootboxjs.com/" target="_blank">Bootbox</a></li>
         <li>カタカナフリーフォント：<a href="http://webub.net/sozai/zou/" target="_blank">フリーフォント　ゾウ</a></li>
+        <li>画像 CDN：<a href="http://cloudinary.com/" target="_blank">Cloudinary</a></li>
         <li>非メジャー JS ライブラリ CDN：<a href="https://cdnjs.com/" target="_blank">cdnjs</a></li>
     </ul>
 </main>
@@ -171,7 +179,7 @@
         <span class="ft-close glyphicon glyphicon-remove"></span>
     </div>
 </div>
-<div class="modal fade" id="ft-export-modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="ft-export-modal" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -182,14 +190,11 @@
                 <button id="ft-copy" class="btn btn-default btn-xs">コピー</button>
                 <pre>
                 </pre>
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:300px;height:250px"
-                     data-ad-client="ca-pub-5480472378575624"
-                     data-ad-slot="3061351121"></ins>
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:300px;height:250px"
-                     data-ad-client="ca-pub-5480472378575624"
-                     data-ad-slot="4538084326"></ins>
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5480472378575624" data-ad-slot="3061351121"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5480472378575624" data-ad-slot="4538084326"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
             <div class="modal-footer">
@@ -205,13 +210,19 @@
     </div>
 </script>
 <script id="character-template" type="text/x-handlebars-template">
-    <tr>
+    <tr id="{{id}}" data-uid="{{uid}}">
         <td class="ft-characters-name">
             <input type="text" name="name" value="{{name}}">
         </td>
         <td class="ft-characters-icon"></td>
-        <td><span class="ft-droppable">画像をドロップして表情を追加</span></td>
+        <td><span class="ft-droppable">画像をドロップしてアイコンを追加</span></td>
+        <td><span class="btn btn-danger ft-delete-character">削除</span></td>
     </tr>
+</script>
+<script id="icon-template" type="text/x-handlebars-template">
+    <span class="{{class}}" data-character-id="{{characterId}}" data-uid="{{uid}}">
+        <span class="glyphicon glyphicon-remove ft-delete-icon"></span>
+    </span>
 </script>
 <script id="baloon-template" type="text/x-handlebars-template">
     <li class="ft-talk ft-icon-pos-left ft-baloon-color-white">
@@ -222,16 +233,23 @@
     </li>
 </script>
 {% if cdn %}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-2.2.2.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.15/autosize.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 {% else %}
 <script src="/js/jquery-2.2.0.min.js"></script>
 <script src="/js/bootstrap-3.3.6.min.js"></script>
+<script src="/js/bootbox-4.4.0.min.js"></script>
 <script src="/js/autosize-3.0.15.min.js"></script>
 <script src="/js/handlebars-4.0.5.min.js"></script>
 {% endif %}
 <script src="/js/script.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-5762897-8', 'auto');
+ga('send', 'pageview');
+</script>
 </body>
 </html>
