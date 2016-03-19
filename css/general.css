@@ -41,14 +41,18 @@ a[target=_blank]:after {
 }
 @media (min-width: 768px) {
     .modal-dialog {
-        width: 636px;
+        width: 637px;
+    }
+    .modal-dialog.ft-help {
+        width: auto;
+        margin: 10px 50px;
     }
 }
 @font-face {
     font-family: 'Zou';
     src: url('../fonts/zou-regular.woff') format('woff');
 }
-#ft-initialize {
+.ft-link {
     cursor: pointer;
 }
 #ft-alert {
@@ -160,6 +164,10 @@ a[target=_blank]:after {
 }
 #ft-talk .ft-talk .ft-icon {
     position: relative;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 #ft-talk .ft-talk .ft-icon .ft-icon-prev,
 #ft-talk .ft-talk .ft-icon .ft-icon-next {
@@ -335,4 +343,31 @@ a[target=_blank]:after {
 #ft-export-modal pre {
     max-height: 250px;
     overflow-wrap: normal;
+}
+.ft-help #ft-tutorial-player {
+    display: inline-block;
+    border: solid 1px #fff;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    width: 798px;
+    height: 450px;
+}
+@media (max-width: 992px) {
+    .ft-help #ft-tutorial-player {
+        width: 532px;
+        height: 300px;
+    }
+}
+@media (max-width: 768px) {
+    .ft-help #ft-tutorial-player {
+        width: 90%;
+    }
+}
+
+.ft-help #ft-tutorial-player-control {
+    text-align: center;
+}
+.ft-help .modal-body {
+    padding: 0 15px;
 }

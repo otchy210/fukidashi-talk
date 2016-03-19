@@ -413,6 +413,7 @@ $body.on('click', function(e) {
     }
     $baloonMenu.remove();
 });
+
 // export
 var $exportModal = $('#ft-export-modal');
 var $exportPre = $exportModal.find('pre');
@@ -468,6 +469,7 @@ $exportModal.on('show.bs.modal', function () {
         addAlert('warning', 'コピー失敗');
     }
 });
+
 // initialize
 $('#ft-initialize').on('click', function() {
     bootbox.confirm('全てのデータを削除し再読込を行います。よろしいですか？', function(result) {
@@ -478,3 +480,63 @@ $('#ft-initialize').on('click', function() {
         location.href = '/';
     });
 });
+
+// help
+var $helpModal = $('#ft-help-modal');
+var $hideHelp = $('#ft-hide-help');
+var tutorialPlayer;
+var playerReady = false;
+var onYouTubeIframeAPIReady = function() {
+    tutorialPlayer = new YT.Player(
+        'ft-tutorial-player', {
+            videoId: '2HERDvW8EuI',
+            events: {
+                'onReady': function() { playerReady = true; }
+            }
+        }
+    );
+    $('#ft-tutorial-player-control').on('click', 'a', function() {
+        var $a = $(this);
+        var time = parseInt($a.data('time'));
+        playFrom(time);
+    });
+};
+var playFrom = function(time) {
+    if (tutorialPlayer) {
+        tutorialPlayer.seekTo(time);
+        tutorialPlayer.playVideo();
+        return;
+    }
+    waitForPlayer_(0, function(result) {
+        if (!result) {
+            return;
+        }
+        tutorialPlayer.seekTo(time);
+        tutorialPlayer.playVideo();
+    });
+};
+var waitForPlayer_ = function(count, callback) {
+    if (count >= 16) {
+        callback(false);
+        return;
+    }
+    if (playerReady) {
+        callback(true);
+        return;
+    }
+    setTimeout(function() {
+        waitForPlayer_(count + 1, callback);
+    }, 100);
+}
+$helpModal.on('hidden.bs.modal', function() {
+    tutorialPlayer.pauseVideo();
+});
+var hideHelp = load('hide-help', false);
+$hideHelp.prop('checked', hideHelp);
+$hideHelp.on('change', function() {
+    save('hide-help', this.checked);
+});
+if (!hideHelp) {
+    $helpModal.modal();
+    playFrom(0);
+}
