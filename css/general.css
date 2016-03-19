@@ -364,10 +364,19 @@ a[target=_blank]:after {
         width: 90%;
     }
 }
-
 .ft-help #ft-tutorial-player-control {
     text-align: center;
 }
 .ft-help .modal-body {
     padding: 0 15px;
+}
+#ft-sns-buttons {
+    padding-bottom: 20px;
+}
+#ft-sns-buttons > div {
+    display: inline-block;
+    margin-right: 10px;
+}
+#ft-sns-buttons iframe {
+    vertical-align: bottom;
 }

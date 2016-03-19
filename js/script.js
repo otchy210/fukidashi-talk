@@ -456,7 +456,7 @@ $exportModal.on('show.bs.modal', function () {
         result += '    </li>\n';
     });
     result += '  </ul>\n';
-    result += '<div class="ft-note">この HTML は<a href="http://fukidashi-talk.otchy.net/" target="_blank">フキダシトーク</a>で出力されました。</div>\n';
+    result += '  <div class="ft-note">この HTML は<a href="http://fukidashi-talk.otchy.net/" target="_blank">フキダシトーク</a>で出力されました。</div>\n';
     result += '</div>\n';
     $pre.text(result);
 }).on('shown.bs.modal', function() {

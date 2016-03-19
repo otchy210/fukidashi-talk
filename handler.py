@@ -22,3 +22,11 @@ class IndexHandler(BaseHandler):
         else:
             cdn = True
         self.render("index.html", {'cdn': cdn})
+
+class SampleHandler(BaseHandler):
+    def get(self):
+        if self.request.get('cdn'):
+            cdn = self.request.get('cdn') in ['True', 'true', '1']
+        else:
+            cdn = True
+        self.render("sample.html", {'cdn': cdn})

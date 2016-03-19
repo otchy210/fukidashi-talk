@@ -12,5 +12,6 @@ app = webapp2.WSGIApplication([
     routes.DomainRoute('fukidashi-talk.appspot.com', [
         routes.RedirectRoute('/', redirect_to='http://fukidashi-talk.otchy.net', schemes=['http'])
     ]),
-    ('/', handler.IndexHandler)
+    ('/', handler.IndexHandler),
+    ('/sample/', handler.SampleHandler)
 ], debug=True)
