@@ -329,6 +329,14 @@ a[target=_blank]:after {
 #ft-baloon-menu .ft-btn-black.active {
     background-color: #333;
 }
+#ft-baloon-menu .ft-delete-talk-wrapper {
+    border-left: solid 1px #999;
+    margin-left: 8px;
+    padding-left: 10px;
+}
+#ft-baloon-menu .btn-sm.btn-danger {
+    color: #fff;
+}
 #ft-export-wrapper {
     padding: 20px 50px;
 }

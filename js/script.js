@@ -405,6 +405,8 @@ $talkUl.on('click', 'li', function(e) {
     var newClass = $($icons.get(nextIndex)).attr('class');
     newClasses.push(newClass);
     $icon.attr('class', newClasses.join(' '));
+}).on('click', '.ft-delete-talk', function() {
+    $(this).closest('li').remove();
 });
 $body.on('click', function(e) {
     var $talk = $(e.target).closest('#ft-talk');
